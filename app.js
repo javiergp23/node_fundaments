@@ -1,10 +1,17 @@
-const http = require('node:http');
-const server = http.createServer((req, res) => {
-    res.end('respues a la solicitud');
+const express = require('express');
+const app = express();
+
+const port = 3000;
+
+app.get('/', (req, res) =>{
+    res.send('Respuesta del server')
+})
+app.get('/servicio', (req, res) =>{
+    res.send('Respuesta del server en la pagina de servicios')
 })
 
-const puerto = 3000;
+app.use(express.static(__dirname + '/public'))
 
-server.listen(puerto, () => {
-    console.log(`Server running on port ${puerto}`)
+app.listen(port, () => {
+    console.log('Server running on port', port)
 })
